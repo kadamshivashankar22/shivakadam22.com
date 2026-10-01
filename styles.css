@@ -191,3 +191,19 @@ footer a:hover{color:var(--text)}
 .row .val{flex:1;min-width:0;overflow-wrap:anywhere}
 .row .act{flex:none;margin-left:auto}
 a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:#06101f;transform:rotate(-6deg) scale(1.08)}
+
+/* ===== Hero portrait + outlined name ===== */
+.hero .wrap.center{text-align:center}
+.hero .center .lede{margin-left:auto;margin-right:auto}
+.hero .center .cta{justify-content:center}
+.stage{--fs:clamp(2.1rem,10.2vw,8rem);position:relative;height:calc(var(--fs)*3.55);margin:26px auto 0;max-width:1100px;overflow:hidden}
+.stage::before{content:"";position:absolute;left:50%;bottom:0;width:70%;height:90%;transform:translateX(-50%);background:radial-gradient(closest-side,color-mix(in srgb,var(--a1) 34%,transparent),transparent);filter:blur(30px);pointer-events:none}
+.hero .stage h1.outline{position:absolute;inset:0 0 auto 0;margin:0;font-size:var(--fs);line-height:.93;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;color:color-mix(in srgb,var(--a1) 6%,transparent);-webkit-text-stroke:max(1.5px,.012em) var(--a1);transition:color .5s,-webkit-text-stroke-color .5s,transform .2s;display:flex;flex-direction:column;align-items:center;white-space:nowrap}
+.stage:hover h1.outline{color:color-mix(in srgb,var(--a2) 14%,transparent);-webkit-text-stroke-color:var(--a2)}
+.hero .stage h1.outline span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero .stage h1.outline span:nth-child(2){animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}}
+.portrait{position:absolute;left:50%;bottom:0;height:calc(var(--fs)*3.2);width:auto;transform:translateX(-50%);filter:grayscale(1) contrast(1.08) brightness(1.04);-webkit-mask-image:linear-gradient(#000 76%,transparent);mask-image:linear-gradient(#000 76%,transparent);animation:portrait 1s .15s cubic-bezier(.2,.8,.2,1) both;transition:transform .2s;will-change:transform}
+@keyframes portrait{from{opacity:0;transform:translateX(-50%) translateY(40px)}}
+.hero .role-line{margin-top:6px}
+.hero .center .badge{margin-bottom:0}

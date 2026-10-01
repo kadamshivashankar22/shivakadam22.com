@@ -168,3 +168,20 @@ document.querySelectorAll('a[href^="/"]').forEach((a) => {
   });
 });
 addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+// ===== Hero parallax: portrait and name drift with the cursor =====
+const stage = document.querySelector('.stage');
+if (stage && matchMedia('(pointer:fine)').matches) {
+  const pic = stage.querySelector('.portrait');
+  const name = stage.querySelector('h1');
+  stage.addEventListener('pointermove', (e) => {
+    const r = stage.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    pic.style.transform = `translateX(calc(-50% + ${x * 18}px))`;
+    name.style.transform = `translateX(${x * -22}px)`;
+  });
+  stage.addEventListener('pointerleave', () => {
+    pic.style.transform = '';
+    name.style.transform = '';
+  });
+}
