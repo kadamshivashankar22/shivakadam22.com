@@ -50,7 +50,8 @@ header.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px) saturate(
 @keyframes drop{from{opacity:0;transform:translateY(-8px)}}
 
 /* ===== Hero ===== */
-.hero{padding:104px 0 70px;position:relative;overflow:hidden}
+.hero{padding:104px 0 70px;position:relative}
+html,body{overflow-x:clip}
 .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;animation:float 14s ease-in-out infinite}
 .orb.o1{width:420px;height:420px;background:var(--a3);top:-120px;right:-80px;opacity:.3}
 .orb.o2{width:300px;height:300px;background:var(--a2);bottom:30px;left:-120px;opacity:.18;animation-delay:-6s}
@@ -107,7 +108,7 @@ h2{font-size:clamp(1.8rem,4.4vw,2.8rem);margin:10px 0 14px}
 .more>div{overflow:hidden}
 .proj.open .more{grid-template-rows:1fr}
 .proj.open{border-color:var(--a1);box-shadow:0 0 0 1px var(--a1),var(--shadow)}
-.facts{display:grid;gap:10px;margin-top:10px;padding-top:16px;border-top:1px dashed var(--line)}
+.facts{display:grid;gap:10px;margin-top:10px}
 .facts div{display:grid;grid-template-columns:100px 1fr;gap:10px;font-size:.92rem}
 .facts dt{color:var(--a2);font-weight:600}
 .facts dd{color:var(--muted)}
@@ -171,7 +172,7 @@ a.row:hover,.row.copy:hover{border-color:var(--a1);transform:translateX(6px)}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:var(--grad);color:var(--on);padding:12px 22px;border-radius:12px;font-weight:700;opacity:0;pointer-events:none;transition:all .35s;z-index:120}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-size:.9rem;margin-top:40px}
+footer{padding:38px 0;color:var(--muted);font-size:.9rem;margin-top:40px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a:hover{color:var(--text)}
 
@@ -188,9 +189,9 @@ footer a:hover{color:var(--text)}
 a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:var(--on);transform:rotate(-6deg) scale(1.08)}
 
 /* ===== Hero with photo ===== */
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
-.hero-grid h1{font-size:clamp(2.5rem,5.4vw,4.6rem);white-space:nowrap}
-.hero-photo{position:relative;justify-self:center;width:min(100%,380px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center}
+.hero-grid h1{font-size:clamp(2rem,3.6vw,3.4rem);white-space:nowrap}
+.hero-photo{position:relative;justify-self:center;width:min(100%,400px)}
 .frame{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:3px;border:0;border-radius:38px;background:var(--grad);cursor:pointer;box-shadow:0 30px 70px -30px color-mix(in srgb,var(--a3) 70%,transparent);animation:floaty 7s ease-in-out infinite;transition:border-radius .7s cubic-bezier(.65,0,.35,1),box-shadow .4s,filter .3s;-webkit-tap-highlight-color:transparent}
 .frame.round{border-radius:50%}
 .frame::before{content:"";position:absolute;inset:3px;border-radius:inherit;background:radial-gradient(120% 90% at 50% 12%,color-mix(in srgb,var(--a3) 60%,var(--card)),var(--card) 72%)}
@@ -203,7 +204,7 @@ a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:var(--on);trans
 @keyframes floaty{50%{transform:translateY(-10px)}}
 @media(max-width:860px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
-  .hero-photo{order:-1;width:min(70%,280px)}
+  .hero-photo{order:-1;width:min(88%,360px)}
   .hero-grid h1{font-size:clamp(1.3rem,6.6vw,3.4rem)}
   }
 
@@ -269,3 +270,16 @@ body.noscroll{overflow:hidden}
 .modal li::marker{color:var(--a1)}
 .modal .org{color:var(--a2);font-weight:600}
 .modal li.extra{display:list-item}
+
+/* icon-only contact */
+.contact{display:flex;flex-wrap:wrap;gap:16px}
+.contact .row{padding:0;border:0;background:none;cursor:pointer;width:auto}
+.contact .row .ic{width:68px;height:68px;border-radius:20px;border:1px solid var(--line)}
+.contact .row .ic svg{width:28px;height:28px}
+a.row:hover,.row.copy:hover{transform:none}
+.contact .row:active .ic,.contact .row.pop .ic{animation:bounce .45s}
+.contact .row:hover .ic{background:var(--grad);color:var(--on);transform:translateY(-4px) scale(1.06)}
+/* language tags click effect */
+.langs .tag{cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent}
+.langs .tag.on{background:var(--grad);color:var(--on);border-color:transparent;transform:translateY(-3px) scale(1.06);box-shadow:0 14px 30px -14px var(--a1)}
+.langs .tag.bounce{animation:bounce .4s}

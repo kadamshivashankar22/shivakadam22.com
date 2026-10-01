@@ -211,3 +211,15 @@ document.querySelectorAll('.card, .chip, .tab, .skill').forEach((el) => {
     setTimeout(() => el.classList.remove('tap'), 550);
   }, { passive: true });
 });
+
+// ===== Languages + contact icons: click animation =====
+document.querySelectorAll('.langs .tag').forEach((t) => {
+  t.addEventListener('click', () => {
+    const was = t.classList.contains('on');
+    document.querySelectorAll('.langs .tag.on').forEach((x) => x.classList.remove('on'));
+    if (!was) { t.classList.add('on', 'bounce'); setTimeout(() => t.classList.remove('bounce'), 450); }
+  });
+});
+document.querySelectorAll('.contact .row').forEach((r) => {
+  r.addEventListener('click', () => { r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop'); });
+});
