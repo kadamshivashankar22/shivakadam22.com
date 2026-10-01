@@ -201,7 +201,7 @@ if (frame) {
 }
 
 // ===== Tap feedback for touch screens (no hover on phones) =====
-document.querySelectorAll('.card, .chip, .tab, .skill').forEach((el) => {
+document.querySelectorAll('.card, .chip, .tab, .skill, .cert').forEach((el) => {
   el.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'mouse') return;
     const r = el.getBoundingClientRect();
@@ -223,3 +223,20 @@ document.querySelectorAll('.langs .tag').forEach((t) => {
 document.querySelectorAll('.contact .row').forEach((r) => {
   r.addEventListener('click', () => { r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop'); });
 });
+
+// ===== Certificates: open full-size in a lightbox =====
+const certBtns = document.querySelectorAll('.cert');
+if (certBtns.length) {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = '<button class="x" type="button" aria-label="Close">&times;</button><figure><img alt=""><figcaption></figcaption></figure>';
+  document.body.appendChild(lb);
+  const limg = lb.querySelector('img'), cap = lb.querySelector('figcaption');
+  const closeLb = () => { lb.classList.remove('show'); document.body.classList.remove('noscroll'); };
+  certBtns.forEach((b) => b.addEventListener('click', () => {
+    limg.src = b.dataset.cert; limg.alt = b.dataset.title; cap.textContent = b.dataset.title;
+    lb.classList.add('show'); document.body.classList.add('noscroll');
+  }));
+  lb.addEventListener('click', (e) => { if (e.target !== limg) closeLb(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+}
