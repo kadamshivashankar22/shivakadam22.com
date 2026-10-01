@@ -1,15 +1,15 @@
-/* ===== Tokens (grey palette: #2B2B2B #565656 #848484 #B3B3B3 #E0E0E0) ===== */
+/* ===== Tokens (blue palette: #000f22 #1b3554 #3f6593 #5b86b6 #80aad3 #c0e6fd) ===== */
 :root{
-  --bg:#202020;--bg2:#262626;--card:#2B2B2B;--card2:#343434;--line:#454545;
-  --text:#E0E0E0;--muted:#B3B3B3;--a1:#E0E0E0;--a2:#B3B3B3;--on:#2B2B2B;
-  --grad:linear-gradient(120deg,var(--a1),var(--a2));
+  --bg:#000f22;--bg2:#04162b;--card:#0a1d36;--card2:#13294a;--line:#27476c;
+  --text:#c0e6fd;--muted:#80aad3;--a1:#c0e6fd;--a2:#80aad3;--a3:#5b86b6;--on:#000f22;
+  --grad:linear-gradient(120deg,var(--a1),var(--a3));
   --radius:18px;--max:1120px;
   --head:'Sora',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;
-  --shadow:0 20px 50px -24px rgba(0,0,0,.75);
+  --shadow:0 20px 50px -24px rgba(0,0,0,.8);
 }
 @media (prefers-color-scheme: light){
-  :root{--bg:#E0E0E0;--bg2:#d6d6d6;--card:#efefef;--card2:#e6e6e6;--line:#B3B3B3;
-    --text:#2B2B2B;--muted:#565656;--a1:#2B2B2B;--a2:#565656;--on:#E0E0E0;--shadow:0 20px 40px -26px rgba(0,0,0,.35)}
+  :root{--bg:#eaf6ff;--bg2:#dcedfb;--card:#f6fbff;--card2:#e2f1fd;--line:#a9cbe6;
+    --text:#000f22;--muted:#3f6593;--a1:#1b3554;--a2:#3f6593;--a3:#3f6593;--on:#eaf6ff;--shadow:0 20px 40px -26px rgba(27,53,84,.45)}
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -52,8 +52,8 @@ header.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px) saturate(
 /* ===== Hero ===== */
 .hero{padding:104px 0 70px;position:relative;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;animation:float 14s ease-in-out infinite}
-.orb.o1{width:420px;height:420px;background:var(--a1);top:-120px;right:-80px;opacity:.14}
-.orb.o2{width:340px;height:340px;background:var(--a2);bottom:-140px;left:-60px;opacity:.1;animation-delay:-6s}
+.orb.o1{width:420px;height:420px;background:var(--a3);top:-120px;right:-80px;opacity:.3}
+.orb.o2{width:340px;height:340px;background:var(--a2);bottom:-140px;left:-60px;opacity:.18;animation-delay:-6s}
 @keyframes float{50%{transform:translate(30px,24px) scale(1.06)}}
 .hero .wrap{position:relative}
 .badge{display:inline-flex;gap:10px;align-items:center;font-size:.84rem;color:var(--muted);border:1px solid var(--line);padding:7px 14px;border-radius:999px;background:var(--card)}
