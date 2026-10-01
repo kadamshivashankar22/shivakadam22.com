@@ -183,3 +183,11 @@ footer a:hover{color:var(--text)}
   *{animation:none!important;transition:none!important}
   body{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}
 }
+
+/* contact icons */
+.row{justify-content:flex-start;gap:16px;flex-wrap:nowrap}
+.row .ic{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--a1) 15%,var(--card2));color:var(--a1);transition:all .3s}
+.row .ic svg{width:22px;height:22px}
+.row .val{flex:1;min-width:0;overflow-wrap:anywhere}
+.row .act{flex:none;margin-left:auto}
+a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:#06101f;transform:rotate(-6deg) scale(1.08)}
