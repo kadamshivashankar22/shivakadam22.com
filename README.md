@@ -1,4 +1,4 @@
-# Shiva Kadam — Portfolio
+# Kadam Shiva Shankar — Portfolio
 
 Static multi-page portfolio (HTML, CSS, JS). No build step. Live at https://shivakadam22.com
 
