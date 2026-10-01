@@ -196,15 +196,23 @@ a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:var(--on);trans
 .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
 .hero-grid h1{font-size:clamp(2.5rem,5.4vw,4.6rem)}
 .hero-photo{position:relative;justify-self:center;width:min(100%,380px)}
-.frame{position:relative;aspect-ratio:4/5;border-radius:34px;padding:3px;background:var(--grad);box-shadow:0 30px 70px -30px color-mix(in srgb,var(--a3) 70%,transparent);animation:floaty 7s ease-in-out infinite;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.frame::before{content:"";position:absolute;inset:3px;border-radius:31px;background:radial-gradient(120% 90% at 50% 15%,color-mix(in srgb,var(--a3) 55%,var(--card)),var(--card) 70%)}
-.frame img{position:relative;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%;border-radius:31px}
-.hero-photo:hover .frame{transform:rotate(-1.5deg) scale(1.025)}
+.frame{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:3px;border:0;border-radius:38px;background:var(--grad);cursor:pointer;box-shadow:0 30px 70px -30px color-mix(in srgb,var(--a3) 70%,transparent);animation:floaty 7s ease-in-out infinite;transition:border-radius .7s cubic-bezier(.65,0,.35,1),box-shadow .4s,filter .3s;-webkit-tap-highlight-color:transparent}
+.frame.round{border-radius:50%}
+.frame::before{content:"";position:absolute;inset:3px;border-radius:inherit;background:radial-gradient(120% 90% at 50% 12%,color-mix(in srgb,var(--a3) 60%,var(--card)),var(--card) 72%)}
+.frame img{position:relative;display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit;transition:transform .7s cubic-bezier(.65,0,.35,1)}
+.frame:hover{box-shadow:0 36px 80px -28px color-mix(in srgb,var(--a1) 55%,transparent)}
+.frame:hover img{transform:scale(1.04)}
+.frame:active img{transform:scale(.98)}
+.frame:focus-visible{outline:3px solid var(--a1);outline-offset:6px}
+.swap{position:absolute;right:2%;bottom:2%;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--a1);border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .7s cubic-bezier(.65,0,.35,1),background .3s,color .3s}
+.swap svg{width:20px;height:20px}
+.frame:hover .swap{background:var(--grad);color:var(--on);border-color:transparent}
+.frame.round .swap{transform:rotate(180deg)}
+.frame.round{animation-name:floaty}
 @keyframes floaty{50%{transform:translateY(-10px)}}
-.chip-float{position:absolute;left:-14px;bottom:26px;padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--text);font-size:.84rem;font-weight:600;box-shadow:var(--shadow);animation:floaty 7s -3s ease-in-out infinite}
 @media(max-width:860px){
   .hero-grid{grid-template-columns:1fr;gap:34px}
-  .hero-photo{order:-1;width:min(66%,260px)}
+  .hero-photo{order:-1;width:min(70%,280px)}
   .hero-grid h1{font-size:clamp(2.3rem,10vw,3.4rem)}
-  .chip-float{left:50%;transform:translateX(-50%);bottom:-14px;white-space:nowrap}
+  .swap{width:38px;height:38px}
 }

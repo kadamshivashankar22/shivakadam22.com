@@ -168,3 +168,12 @@ document.querySelectorAll('a[href^="/"]').forEach((a) => {
   });
 });
 addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+// ===== Photo shape: click to switch rounded square <-> circle =====
+const frame = document.querySelector('.frame');
+if (frame) {
+  frame.addEventListener('click', () => {
+    const round = frame.classList.toggle('round');
+    frame.setAttribute('aria-pressed', round);
+  });
+}
