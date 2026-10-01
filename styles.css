@@ -179,10 +179,6 @@ footer a:hover{color:var(--text)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  body{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}
-}
 
 /* contact icons */
 .row{justify-content:flex-start;gap:16px;flex-wrap:nowrap}
@@ -215,4 +211,40 @@ a.row:hover .ic,.row.copy:hover .ic{background:var(--grad);color:var(--on);trans
   .hero-photo{order:-1;width:min(70%,280px)}
   .hero-grid h1{font-size:clamp(2.3rem,10vw,3.4rem)}
   .swap{width:38px;height:38px}
+}
+
+
+/* ===== Hero entrance (plays on load, so phones see motion without hovering) ===== */
+@keyframes fadein{from{opacity:0}}
+.hero-text>*{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero-text>*:nth-child(1){animation-delay:.05s}
+.hero-text>*:nth-child(2){animation-delay:.15s}
+.hero-text>*:nth-child(3){animation-delay:.25s}
+.hero-text>*:nth-child(4){animation-delay:.35s}
+.hero-text>*:nth-child(5){animation-delay:.45s}
+.hero-text>*:nth-child(6){animation-delay:.55s}
+.hero-photo{animation:rise .9s .2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}}
+
+/* ===== Touch screens: no hover, so give taps visible feedback ===== */
+.card.tap::before{opacity:1}
+.card.tap,.stat.tap{transform:translateY(-4px) scale(1.01);border-color:color-mix(in srgb,var(--a1) 60%,var(--line))}
+.chip.tap,.tab.tap,.skill.tap{transform:scale(.94)}
+@media (hover:none){
+  .card:active,.stat:active{transform:scale(.975)}
+  .chip:active,.tab:active,.skill:active,.btn:active,.toggle:active{transform:scale(.94)}
+  .proj .hint{color:var(--a2)}
+}
+
+/* ===== Reduced motion: stay respectful, but keep gentle fades and tap feedback.
+   Only endless looping movement and big slides are switched off. ===== */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .orb,.frame,.dot,.hero-photo{animation:none}
+  .hero-text>*{animation-name:fadein;animation-duration:.7s}
+  .reveal{transform:none;transition:opacity .7s}
+  body{animation-duration:.5s}
+  .frame:hover img{transform:none}
+  .role-line b{transition:opacity .4s}
+  .role-line b.out{transform:none}
 }

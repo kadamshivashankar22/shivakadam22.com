@@ -177,3 +177,15 @@ if (frame) {
     frame.setAttribute('aria-pressed', round);
   });
 }
+
+// ===== Tap feedback for touch screens (no hover on phones) =====
+document.querySelectorAll('.card, .stat, .chip, .tab, .skill').forEach((el) => {
+  el.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', e.clientX - r.left + 'px');
+    el.style.setProperty('--my', e.clientY - r.top + 'px');
+    el.classList.add('tap');
+    setTimeout(() => el.classList.remove('tap'), 550);
+  }, { passive: true });
+});
