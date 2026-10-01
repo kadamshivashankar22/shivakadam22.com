@@ -135,14 +135,36 @@ document.querySelectorAll('.skill').forEach((s) => {
   });
 });
 
-// ===== Experience: show more =====
-document.querySelectorAll('.role .toggle').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const role = btn.closest('.role');
-    const open = role.classList.toggle('expanded');
-    btn.textContent = open ? 'Show less' : 'Show all responsibilities';
+// ===== Experience: click a role to open a pop-up =====
+const roles = document.querySelectorAll('.role');
+if (roles.length) {
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.innerHTML = '<div class="sheet" role="dialog" aria-modal="true"><button class="x" type="button" aria-label="Close">&times;</button><div class="body"></div></div>';
+  document.body.appendChild(modal);
+  const body = modal.querySelector('.body');
+  const close = () => { modal.classList.remove('show'); document.body.classList.remove('noscroll'); };
+  const open = (role) => {
+    const c = role.cloneNode(true);
+    c.className = 'role-pop';
+    c.removeAttribute('role'); c.removeAttribute('tabindex');
+    c.querySelectorAll('.intro,.toggle').forEach((n) => n.remove());
+    c.querySelectorAll('.reveal').forEach((n) => n.classList.remove('reveal'));
+    const when = c.querySelector('.when'), main = c.querySelector('.when + div');
+    body.innerHTML = '';
+    if (when) body.appendChild(when);
+    if (main) while (main.firstChild) body.appendChild(main.firstChild);
+    modal.classList.remove('show'); void modal.offsetWidth;
+    modal.classList.add('show'); document.body.classList.add('noscroll');
+    modal.querySelector('.x').focus();
+  };
+  roles.forEach((r) => {
+    r.addEventListener('click', () => open(r));
+    r.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(r); } });
   });
-});
+  modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('.x')) close(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+}
 
 // ===== Copy email =====
 const toast = document.createElement('div');
@@ -179,7 +201,7 @@ if (frame) {
 }
 
 // ===== Tap feedback for touch screens (no hover on phones) =====
-document.querySelectorAll('.card, .stat, .chip, .tab, .skill').forEach((el) => {
+document.querySelectorAll('.card, .chip, .tab, .skill').forEach((el) => {
   el.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'mouse') return;
     const r = el.getBoundingClientRect();
