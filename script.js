@@ -85,8 +85,8 @@ document.querySelectorAll('.proj').forEach((p) => {
     const open = p.classList.toggle('open');
     p.setAttribute('aria-expanded', open);
   };
-  p.addEventListener('click', toggle);
-  p.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  p.addEventListener('click', (e) => { if (e.target.closest('a')) return; toggle(); });
+  p.addEventListener('keydown', (e) => { if (e.target.closest('a')) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
 });
 
 // ===== Project filters =====
