@@ -339,3 +339,4 @@ main{padding-bottom:72px}
 .contact .row .ext{position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:var(--on);font-style:normal;font-size:.8rem;font-weight:700;border:2px solid var(--bg)}
 .legend{margin-top:16px;color:var(--muted);font-size:.84rem}
 .legend b{color:var(--a1)}
+.modal .tags{margin-top:20px}.modal .detail{margin-bottom:6px}
